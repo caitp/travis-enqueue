@@ -1,4 +1,5 @@
 require 'travis'
+require 'travis/enqueue'
 
 $stdout.sync = true
 
@@ -16,10 +17,7 @@ def active?
 end
 
 def run
-  print "about to enqueue jobs ... "
-  reports = Travis::Services::Jobs::Enqueue.run
-  puts 'done.'
-  puts format(reports)
+  Travis.run_service(:enqueue_jobs)
 end
 
 def format(reports)
